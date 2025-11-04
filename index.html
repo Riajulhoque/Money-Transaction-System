@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Transaction System</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#1a2a6c',
+            'secondary': '#b21f1f',
+            'accent': '#fdbb2d',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      min-height: 100vh;
+    }
+    
+    .balance-container {
+      perspective: 1000px;
+    }
+    
+    .balance-card {
+      transform: rotateX(5deg);
+      transition: transform 0.5s ease;
+    }
+    
+    .balance-card:hover {
+      transform: rotateX(0deg) translateY(-5px);
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center p-5">
+  <div class="container max-w-4xl mx-auto">
+    <!-- Header -->
+    <header class="bg-base-300 rounded-t-2xl p-6 text-center shadow-lg">
+      <h1 class="text-4xl font-bold mb-2 text-white uppercase tracking-wider">Money Transaction System</h1>
+      <p class="text-xl opacity-70">Deposit and Withdraw Money</p>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="bg-base-200/70 backdrop-blur-md rounded-b-2xl shadow-xl border border-white/20 p-6">
+      <!-- Balance Section -->
+      <div class="balance-container mb-8">
+        <div class="balance-card card bg-base-300/80 shadow-xl p-6 text-center border border-white/20">
+          <div class="text-lg opacity-70 mb-2">Current Balance</div>
+          <div class="text-4xl font-bold text-success" id="balance-amount">$5,250.75</div>
+        </div>
+      </div>
+      
+      <!-- Transaction Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Transaction Form -->
+        <div class="card bg-base-300/80 shadow-xl p-6 lg:col-span-1 border border-white/20">
+          <h2 class="card-title text-2xl mb-4 justify-center text-white">Make a Transaction</h2>
+          
+          <div class="form-control w-full mb-4">
+            <label class="label">
+              <span class="label-text text-white">Transaction Type</span>
+            </label>
+            <select id="transaction-type" class="select select-bordered w-full">
+              <option value="deposit">Deposit</option>
+              <option value="withdraw">Withdraw</option>
+            </select>
+          </div>
+          
+          <div class="form-control w-full mb-4">
+            <label class="label">
+              <span class="label-text text-white">Amount ($)</span>
+            </label>
+            <input type="number" id="amount" placeholder="Enter amount" min="1" class="input input-bordered w-full">
+          </div>
+          
+          <div class="form-control w-full mb-6">
+            <label class="label">
+              <span class="label-text text-white">Description (Optional)</span>
+            </label>
+            <input type="text" id="description" placeholder="Enter description" class="input input-bordered w-full">
+          </div>
+          
+          <button id="process-btn" class="btn btn-success w-full">Process Transaction</button>
+        </div>
+        
+        <!-- Transaction History -->
+        <div class="card bg-base-300/80 shadow-xl p-6 lg:col-span-2 border border-white/20">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="card-title text-2xl text-white">Transaction History</h2>
+            <button id="clear-history" class="btn btn-outline btn-error btn-sm">Clear All</button>
+          </div>
+          
+          <div class="overflow-y-auto max-h-96 pr-2" id="history-list">
+            <!-- Transaction items will be added here dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
