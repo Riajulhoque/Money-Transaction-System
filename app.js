@@ -1,3 +1,15 @@
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#1a2a6c',
+        'secondary': '#b21f1f',
+        'accent': '#fdbb2d',
+      }
+    }
+  }
+}
+
 const transactionType = document.getElementById('transaction-type');
 const amountInput = document.getElementById('amount');
 const descriptionInput = document.getElementById('description');
